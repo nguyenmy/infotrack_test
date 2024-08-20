@@ -11,8 +11,8 @@ namespace SettlementBookingSystem.Application.Bookings.Services
 	{
 		private readonly List<Booking> _bookings = new();
 		private readonly int _maxBookingsPerSlot = 4;
+		private static readonly object _locker = new object();
 
-		private static object _locker = new object();
 		public Booking CreateBooking(string name, string bookingTime)
 		{
 			// due to the singleton instance, need to lock to avoid race conditions 
